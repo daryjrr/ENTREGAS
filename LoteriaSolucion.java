@@ -82,58 +82,76 @@ public class LoteriaSolucion {
 	//Comprueba si un décimo ha sido agraciado y en tal caso indica por consola el premio
 	public static String heSidoAgraciado(String[] numerosSorteo, String[] premiosSorteo, String miDecimo){
 		String premio="Número no premiado"; //valor por defecto
+		String premio2="Numero no premiado";
 		
 		
 		for (int i=0;i<numerosSorteo.length;i++) {
-			if (numerosSorteo[i].equals(miDecimo)) //he pillado algo
-					premio=("Agraciado con: "+premiosSorteo[i]);
-			}
-		
+			
+			
 		//posterior y anterior
-		for (int i = 0; i < numerosSorteo.length; i++) {
-			int nuevoDecimo = Integer.parseInt(miDecimo);
-			int numeroPremiado = Integer.parseInt(numerosSorteo[i]);
-
-			if (premiosSorteo[i].contains("PRIMER") && nuevoDecimo == numeroPremiado - 1){
-				premio=("Agraciado con: ANTERIOR AL GORDO");
-			}
-			
-			else if (premiosSorteo[i].contains("PRIMER") && nuevoDecimo == numeroPremiado + 1){
-				premio=("Agraciado con: POSTERIOR AL GORDO");
-			}
-			
-			else if (premiosSorteo[i].contains("SEGUNDO") && nuevoDecimo == numeroPremiado - 1){
-				premio=("Agraciado con: ANTERIOR AL SEGUNDO");
-			}
-			
-			else if (premiosSorteo[i].contains("SEGUNDO") && nuevoDecimo == numeroPremiado + 1){
-				premio=("Agraciado con: POSTERIOR AL SEGUNDO");
-			}
-			
-			else if (premiosSorteo[i].contains("TERCER") && nuevoDecimo == numeroPremiado - 1){
-				premio=("Agraciado con: ANTERIOR AL TERCERO");
-			}
-			
-			else if (premiosSorteo[i].contains("TECER") && nuevoDecimo == numeroPremiado + 1){
-				premio=("Agraciado con: POSTERIOR AL TECERO");
-			}
-		}
-		
-		for (int i = 0; i < numerosSorteo.length; i++) {
-			char[] nuevoDecimo = miDecimo.toCharArray();
 			char[] numeroCharArray = numerosSorteo[i].toCharArray();
+			int nuevoDecimoint = Integer.parseInt(miDecimo);
+			int numeroPremiado = Integer.parseInt(numerosSorteo[i]);
+		
+			if (premiosSorteo[i].contains("PRIMER") && nuevoDecimoint == numeroPremiado - 1){
+				premio2=("Agraciado con: ANTERIOR AL GORDO");
+			}
+			
+			else if (premiosSorteo[i].contains("PRIMER") && nuevoDecimoint == numeroPremiado + 1){
+				premio2=("Agraciado con POSTERIOR AL GORDO");
+			}
+			
+			else if (premiosSorteo[i].contains("SEGUNDO") && nuevoDecimoint == numeroPremiado - 1){
+				premio2=("Agraciado con ANTERIOR AL SEGUNDO");
+			}
+			
+			else if (premiosSorteo[i].contains("SEGUNDO") && nuevoDecimoint == numeroPremiado + 1){
+				premio2=("Agraciado con POSTERIOR AL SEGUNDO");
+			}
+			
+			else if (premiosSorteo[i].contains("TERCER") && nuevoDecimoint == numeroPremiado - 1){
+				premio2=("Agraciado con ANTERIOR AL TECERO");
+			}
+			
+			else if (premiosSorteo[i].contains("TECER") && nuevoDecimoint == numeroPremiado + 1){
+				premio2=("Agraciado con POSTERIOR AL TERCERO");
+			}
+			
+			
+			//centenas y terminaciones
+			char[] nuevoDecimo = miDecimo.toCharArray();
 		
 			if (premiosSorteo[i].contains("PRIMER") && nuevoDecimo[0] == numeroCharArray[0] && nuevoDecimo[1] == numeroCharArray[1] && nuevoDecimo[2] == numeroCharArray[2]) {
-				premio=("Agraciado con: Decenas del gordo");
+				premio2=("Agraciado con CENTENAS DE GORDO");
 			}
 			
 			else if (premiosSorteo[i].contains("SEGUNDO") && nuevoDecimo[0] == numeroCharArray[0] && nuevoDecimo[1] == numeroCharArray[1] && nuevoDecimo[2] == numeroCharArray[2]) {
-				premio=("Agraciado con: Decenas del SEGUNDO");	
-		}
+				premio2=("Agraciado con CENTENAS DE SEGUNDO");	
+			}
 			
 			else if (premiosSorteo[i].contains("TERCER") && nuevoDecimo[0] == numeroCharArray[0] && nuevoDecimo[1] == numeroCharArray[1] && nuevoDecimo[2] == numeroCharArray[2]) {
-				premio=("Agraciado con: Decenas del TERCER");
-			}}
+				premio2=("Agraciado con CENTENAS DEL TERCERO");
+			}
+			
+			else if (premiosSorteo[i].contains("CUARTO") && nuevoDecimo[0] == numeroCharArray[0] && nuevoDecimo[1] == numeroCharArray[1] && nuevoDecimo[2] == numeroCharArray[2]) {
+				premio2=("Agraciado con CENTENAS DEL CUARTO");
+			}
+			
+			if (premiosSorteo[i].contains("PRIMER") && nuevoDecimo[4] == numeroCharArray[4]) {
+				premio2=("Agraciado con TERMINACION DEL GORDO");
+			}
+			
+			else if (premiosSorteo[i].contains("SEGUNDO") && nuevoDecimo[3] == numeroCharArray[3] && nuevoDecimo[4] == numeroCharArray[4]) {
+				premio2=("Agraciado con TERMINACION DEL SEGUNDO");	
+			}
+			
+			else if (premiosSorteo[i].contains("TERCER") && nuevoDecimo[3] == numeroCharArray[3] && nuevoDecimo[4] == numeroCharArray[4]) {
+				premio2=("Agraciado con TERMINACION DEL TERCERO");	
+			}
+			if (numerosSorteo[i].equals(miDecimo)) { //he pillado algo
+				premio=("Agraciado con: "+premiosSorteo[i]+ "y "+premio2);
+				
+				}}
 		return (premio);
 	
 	}
